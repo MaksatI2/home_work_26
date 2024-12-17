@@ -12,7 +12,6 @@ public class MovieApp {
         try {
             MovieManager manager = new MovieManager("src/data/movies.json");
 
-
             while (true) {
                 System.out.println("\nВыберите действие:");
                 System.out.println("1. Показать все фильмы");
