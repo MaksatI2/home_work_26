@@ -18,7 +18,6 @@ public class MovieManager {
         movies = gson.fromJson(new FileReader(filePath), listType);
     }
 
-    // Показать все фильмы
     public void showAllMovies() {
         System.out.printf("%-42s | %-6s | %-20s | %-50s%n", "Название", "Год", "Режиссёр", "Актёры");
         System.out.println("=".repeat(166)); // Разделитель таблицы
@@ -37,15 +36,12 @@ public class MovieManager {
         }
     }
 
-
-    // Поиск по названию фильма
     public List<Movie> searchByTitle(String title) {
         return movies.stream()
                 .filter(movie -> movie.getName().toLowerCase().contains(title.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
-    // Поиск по актёру
     public List<Movie> searchByActor(String actorName) {
         return movies.stream()
                 .filter(movie -> movie.getCast().stream()
@@ -53,21 +49,18 @@ public class MovieManager {
                 .collect(Collectors.toList());
     }
 
-    // Поиск по режиссёру
     public List<Movie> searchByDirector(String directorName) {
         return movies.stream()
                 .filter(movie -> movie.getDirector().getFullName().equalsIgnoreCase(directorName))
                 .collect(Collectors.toList());
     }
 
-    // Поиск по году
     public List<Movie> searchByYear(int year) {
         return movies.stream()
                 .filter(movie -> movie.getYear() == year)
                 .collect(Collectors.toList());
     }
 
-    // Получить всех актёров (уникальных и отсортированных)
     public void showUniqueActors() {
         movies.stream()
                 .flatMap(movie -> movie.getCast().stream())
@@ -77,7 +70,6 @@ public class MovieManager {
                 .forEach(System.out::println);
     }
 
-    // Сортировка фильмов
     public void sortMovies(Comparator<Movie> comparator) {
         movies.stream()
                 .sorted(comparator)
