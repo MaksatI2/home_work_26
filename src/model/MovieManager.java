@@ -20,7 +20,6 @@ public class MovieManager {
 
     public void showAllMovies() {
         System.out.printf("%-42s | %-6s | %-20s | %-50s%n", "Название", "Год", "Режиссёр", "Актёры");
-        System.out.println("=".repeat(166)); // Разделитель таблицы
 
         for (Movie movie : movies) {
             String actors = movie.getCast().stream()
