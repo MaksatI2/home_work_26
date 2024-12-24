@@ -62,12 +62,13 @@ public class MovieManager {
 
     public void showUniqueActors() {
         movies.stream()
-                .flatMap(movie -> movie.getCast().stream())
-                .map(Actor::getFullName)
+                .flatMap(movie -> movie.getCast().stream()
+                        .map(actor -> actor.getFullName() + " (" + actor.getRole() + " in \"" + movie.getName() + "\")"))
                 .distinct()
                 .sorted()
                 .forEach(System.out::println);
     }
+
 
     public void sortMovies(Comparator<Movie> comparator) {
         movies.stream()
